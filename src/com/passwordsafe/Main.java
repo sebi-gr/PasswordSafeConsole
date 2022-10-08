@@ -1,5 +1,8 @@
 package com.passwordsafe;
 
+import com.passwordsafe.logger.LoggerFactory;
+import com.passwordsafe.logger.LoggerType;
+
 import java.io.File;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -8,6 +11,8 @@ public class Main {
 
     private static final MasterPasswordRepository masterRepository = new MasterPasswordRepository("./master.pw");
     private static PasswordSafeEngine passwordSafeEngine = null;
+
+    private static LoggerFactory loggerFactory = new LoggerFactory();
 
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome to Passwordsafe");
@@ -85,7 +90,7 @@ public class Main {
                         System.out.println("Please repeat the master password:");
                         repeatMasterPw = read.next();
                     } while (!masterPw.equals(repeatMasterPw));
-                    System.out.println("Successfully set new master password!");
+                    loggerFactory.getLogger(LoggerType.INFO).log("Successfully set new master password!");
                     masterRepository.setMasterPasswordPlain(masterPw);
                     // urgent hotfix delete old passwords after changing the master
                     File oldPasswords = new File("./passwords.pw");
