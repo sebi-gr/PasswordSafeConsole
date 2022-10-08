@@ -80,6 +80,12 @@ public class Main {
                     passwordSafeEngine = null;
                     System.out.println("Enter new master password ! (Warning you will loose all already stored passwords)");
                     String masterPw = read.next();
+                    String repeatMasterPw;
+                    do {
+                        System.out.println("Please repeat the master password:");
+                        repeatMasterPw = read.next();
+                    } while (!masterPw.equals(repeatMasterPw));
+                    System.out.println("Successfully set new master password!");
                     masterRepository.setMasterPasswordPlain(masterPw);
                     // urgent hotfix delete old passwords after changing the master
                     File oldPasswords = new File("./passwords.pw");
@@ -99,6 +105,6 @@ public class Main {
             }
         }
 
-        System.out.println("Good by !");
+        System.out.println("Good bye !");
     }
 }
