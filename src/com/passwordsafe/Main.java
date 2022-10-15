@@ -1,7 +1,6 @@
 package com.passwordsafe;
 
 import com.passwordsafe.logger.LoggerFactory;
-import com.passwordsafe.logger.LoggerType;
 
 import java.io.File;
 import java.util.Arrays;
@@ -90,7 +89,7 @@ public class Main {
                         System.out.println("Please repeat the master password:");
                         repeatMasterPw = read.next();
                     } while (!masterPw.equals(repeatMasterPw));
-                    loggerFactory.getLogger(LoggerType.INFO).log("Successfully set new master password!");
+                    loggerFactory.getLogger().logInfo("Successfully set new master password!");
                     masterRepository.setMasterPasswordPlain(masterPw);
                     // urgent hotfix delete old passwords after changing the master
                     File oldPasswords = new File("./passwords.pw");

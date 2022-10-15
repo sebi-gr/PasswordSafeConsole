@@ -2,23 +2,13 @@ package com.passwordsafe.logger;
 
 public class LoggerFactory {
 
-    public Logger getLogger (LoggerType loggerType) {
-        if (loggerType == null) {
-            return null;
+    private Logger logger = null;
+
+    public Logger getLogger () {
+        if (logger == null) {
+            return new ConsoleLogger();
         }
 
-        switch (loggerType) {
-            case DEBUG -> {
-                return new DebugLogger();
-            }
-            case INFO -> {
-                return new InfoLogger();
-            }
-            case ERROR -> {
-                return new ErrorLogger();
-            }
-        }
-
-        return null;
+        return logger;
     }
 }
